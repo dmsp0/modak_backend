@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.modak.backend.entity.CertificationEntity;
 
 @Repository
-public interface CertificationRepository extends JpaRepository<CertificationRepository, String>{
+public interface CertificationRepository extends JpaRepository<CertificationEntity, String>{
     
 }
