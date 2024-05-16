@@ -7,7 +7,6 @@ import com.modak.backend.entity.embeddable.WeatherId;
 import com.modak.backend.repository.WeatherRepository;
 import com.modak.backend.service.WeatherService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WeatherServiceImpl implements WeatherService {
     private final WeatherRepository weatherRepository;
-    private final ModelMapper modelMapper;
 
     @Override
     public void register(WeatherDto weatherDto) {
@@ -51,7 +49,7 @@ public class WeatherServiceImpl implements WeatherService {
             WeatherId weatherId = new WeatherId(location.getRegion(), LocalDate.now().minusDays(1));
             weatherIdList.add(weatherId);
         }
-        weatherRepository.deleteAllById(weatherIdList);
+        weatherRepository.deleteAllByIdInBatch(weatherIdList);
 
     }
 
