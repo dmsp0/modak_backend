@@ -7,5 +7,5 @@ import com.modak.backend.entity.CertificationEntity;
 
 @Repository
 public interface CertificationRepository extends JpaRepository<CertificationEntity, String>{
-    
+
 }
