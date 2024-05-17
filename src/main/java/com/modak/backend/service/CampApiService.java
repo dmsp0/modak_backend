@@ -31,7 +31,7 @@ public class CampApiService {
     @Scheduled(cron = "0 0 3 1 * *")
     public void registerByApi(){
         int totalCount = getCampTotalCount();
-        int size = 50;
+        int size = 500;
         int totalPage = (int) Math.ceil(((double) totalCount / size));
 
         campService.clear();
@@ -90,6 +90,7 @@ public class CampApiService {
                 .lat(Double.parseDouble((String)item.get("mapY")))
                 .lon(Double.parseDouble((String)item.get("mapX")))
                 .homePage((String)item.get("homepage"))
+                .imgName((String)item.get("firstImageUrl"))
                 .build();
 
         //시설 추가
@@ -102,9 +103,6 @@ public class CampApiService {
         for (String type : types.split(",")){
             campDto.getTypes().add(type);
         }
-
-        String firstImage = (String)item.get("firstImageUrl");
-        campDto.getImgNames().add(firstImage);
 
         return campDto;
     }

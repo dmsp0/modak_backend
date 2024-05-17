@@ -29,4 +29,6 @@ class CampApiServiceTest {
         campApiService.registerByApi();
     }
 
+
+
 }
