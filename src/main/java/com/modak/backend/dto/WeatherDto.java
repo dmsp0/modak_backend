@@ -16,5 +16,6 @@ public class WeatherDto {
     private double lowTemp;
     private double temp;
     private String weather;
+    private String day;
 
 }
