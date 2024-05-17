@@ -17,6 +17,7 @@ public interface CampRepository extends JpaRepository<CampEntity,Long> {
             "where region in :regions and img_name != '' " +
             "order by Rand() limit 4", nativeQuery = true)
     public List<CampInterface> selectBestFourByBestRegions(@Param("regions") List<String> regions);
+
     @Query(value = "select camp_no as campNo, camp_name as name, camp_address as address, img_name as imgName " +
             "from camp_tbl c " +
             "where region = :region and img_name != '' " +

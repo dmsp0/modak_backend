@@ -53,7 +53,7 @@ public class CampApiService {
             }
         }
     }
-    public int getCampTotalCount(){
+    private int getCampTotalCount(){
         int totalCount = 0;
         try {
             JSONObject jsonObject = (JSONObject) getJsonObject(1,1);
@@ -66,7 +66,7 @@ public class CampApiService {
         }
         return totalCount;
     }
-    public JSONObject getJsonObject(int page, int size) throws IOException, ParseException {
+    private JSONObject getJsonObject(int page, int size) throws IOException, ParseException {
         URL url = new URL("http://apis.data.go.kr/B551011/GoCamping/basedList?serviceKey=" + campingApiKey + "&numOfRows=" +size + "&pageNo=" + page + "&MobileOS=ETC&MobileApp=modak&_type=json");
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("GET");
@@ -79,7 +79,7 @@ public class CampApiService {
         return jsonObject;
     }
 
-    public CampDto objectToDto(JSONObject item){
+    private CampDto objectToDto(JSONObject item){
         CampDto campDto = CampDto.builder()
                 .name((String)item.get("facltNm"))
                 .lineIntro((String)item.get("lineIntro"))
