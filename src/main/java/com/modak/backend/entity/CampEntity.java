@@ -1,16 +1,16 @@
 package com.modak.backend.entity;
 
 import com.modak.backend.entity.embeddable.CampFacility;
-import com.modak.backend.entity.embeddable.CampImg;
 import com.modak.backend.entity.embeddable.CampType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@ToString
+@ToString(exclude = {"facilities","campTypes"})
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,16 +38,13 @@ public class CampEntity {
     private double lon;
     private String region;
     private String homePage;
+    private String imgName;
 
     @ElementCollection
     @Builder.Default
     @CollectionTable(name = "camp_facility")
     private List<CampFacility> facilities = new ArrayList<>();
 
-    @ElementCollection
-    @Builder.Default
-    @CollectionTable(name = "camp_img")
-    private List<CampImg> campImgs = new ArrayList<>();
 
     @ElementCollection
     @Builder.Default
@@ -57,15 +54,10 @@ public class CampEntity {
     public void addFacility(String facility){
         CampFacility campFacility = new CampFacility(facility);
         this.facilities.add(campFacility);
-
     }
     public void addType(String type){
 //        CampingType campingType = CampingType.valueOf(type);
         CampType campType = new CampType(type);
         this.campTypes.add(campType);
-    }
-
-    public void addImg(CampImg campImg){
-        campImgs.add(campImg);
     }
 }
