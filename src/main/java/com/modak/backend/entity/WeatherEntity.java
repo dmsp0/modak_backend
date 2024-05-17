@@ -16,10 +16,10 @@ import lombok.*;
 public class WeatherEntity {
     @EmbeddedId
     private WeatherId weatherId;
-    private String highTemp;
-    private String lowTemp;
+    private int highTemp;
+    private int lowTemp;
     @Setter
-    private String temp;
+    private int temp;
     @Setter
     private String weather;
 }
